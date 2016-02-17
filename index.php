@@ -21,12 +21,11 @@ echo 'SELECT
 	id,date,champ1,champ2
 FROM database
 WHERE actif=1
-ORDER BY date DESC
-LIMIT 1
 ';
-$res=$bd->sql(ob_get_clean());
+$res=$bd->select(ob_get_clean());
 
-while($row=$bd->result($res)){
+if(count($res)==0) return;
+foreach($res AS $row){ 
 	echo $row['champ1'];
 }
 
